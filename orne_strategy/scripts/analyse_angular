@@ -1,0 +1,83 @@
+#!/usr/bin/env python
+
+import rospy
+import geometry_msgs.msg
+import tf
+from geometry_msgs.msg import Quaternion
+import math
+from std_srvs.srv import Trigger
+from fulanghua_srvs.srv import Pose
+from time import sleep
+from geometry_msgs.msg import Twist
+from sensor_msgs.msg import LaserScan
+
+       
+
+
+if __name__ == '__main__':
+    print('start')
+
+    rospy.init_node('analyse')
+
+    tf_listener = tf.TransformListener()
+    suspend_pose_cfg  =  [rospy.get_param('tsukuba_challenge_strategy/suspend_pose1'),rospy.get_param('tsukuba_challenge_strategy/suspend_pose2'),rospy.get_param('tsukuba_challenge_strategy/suspend_pose3')]
+    resume_pose_cfg  =  [rospy.get_param('tsukuba_challenge_strategy/resume_pose1'),rospy.get_param('tsukuba_challenge_strategy/resume_pose2'),rospy.get_param('tsukuba_challenge_strategy/resume_pose3')]
+
+    suspend_pose = [geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose()]
+    resume_pose = [geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose()]
+
+    suspend_pose[0].position.x = suspend_pose_cfg[0]['position']['x']
+    suspend_pose[0].position.y = suspend_pose_cfg[0]['position']['y']
+    suspend_pose[0].position.z = suspend_pose_cfg[0]['position']['z']
+    suspend_pose[0].orientation.x = suspend_pose_cfg[0]['orientation']['x']
+    suspend_pose[0].orientation.y = suspend_pose_cfg[0]['orientation']['y']
+    suspend_pose[0].orientation.z = suspend_pose_cfg[0]['orientation']['z']
+    suspend_pose[0].orientation.w = suspend_pose_cfg[0]['orientation']['w']
+
+    resume_pose[0].position.x = resume_pose_cfg[0]['position']['x']
+    resume_pose[0].position.y = resume_pose_cfg[0]['position']['y']
+    resume_pose[0].position.z = resume_pose_cfg[0]['position']['z']
+    resume_pose[0].orientation.x = resume_pose_cfg[0]['orientation']['x']
+    resume_pose[0].orientation.y = resume_pose_cfg[0]['orientation']['y']
+    resume_pose[0].orientation.z = resume_pose_cfg[0]['orientation']['z']
+    resume_pose[0].orientation.w = resume_pose_cfg[0]['orientation']['w']
+
+
+
+    rate = rospy.Rate(10)
+
+    while  not rospy.is_shutdown():
+        rate.sleep()
+        try:
+            (trans, rot) = tf_listener.lookupTransform('map', 'base_link', rospy.Time(0))
+            x = trans[0]
+            y = trans[1]
+
+            ori_x = rot[0]
+            ori_y = rot[1]
+            ori_z = rot[2]
+            ori_w = rot[3]
+
+
+            robot_angular = tf.transformations.euler_from_quaternion((ori_x, ori_y, ori_z, ori_w))
+
+            line_angular =  math.atan2(resume_pose[0].position.y - suspend_pose[0].position.y, resume_pose[0].position.x - suspend_pose[0].position.x)
+
+            ang_diff = robot_angular[2] - line_angular
+            if ang_diff < -3.14:
+                ang_diff = ang_diff + 6.28
+
+            ang_vel = -ang_diff
+
+
+            point_angular = math.atan2(y - suspend_pose[0].position.y,x - suspend_pose[0].position.x) - line_angular
+            
+            vertical_diff = math.sin(point_angular) * math.sqrt(math.pow(x - suspend_pose[0].position.x, 2) + math.pow(y - suspend_pose[0].position.y, 2))
+            v_ang_vel = -vertical_diff
+
+            print('robot_ang',robot_angular[2],'line_ang',line_angular,'r-l',ang_diff,'ang_vel',ang_vel,'p_ang',point_angular,'v_diff',vertical_diff,'v_ang_vel',v_ang_vel)
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            print("error")
+            continue
+
+
