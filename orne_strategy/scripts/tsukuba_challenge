@@ -17,9 +17,11 @@ class TsukubaChallengeStrategy:
         self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
         self.resume_nav_server = rospy.Service('resume_nav', Trigger, self.resume_nav_callback)
         self.scan_sub = rospy.Subscriber('/scan',LaserScan ,self.scan_callback)
+        self.vel_scan_sub = rospy.Subscriber('/vel_scan',LaserScan ,self.vel_scan_callback)
         self.current_sp = 0
         self.strategy_state= rospy.get_param('state')
         self.sensor_data = 0
+        self.vel_sensor_data = 0
 
 
         suspend_pose_cfg  =  [rospy.get_param('~suspend_pose1'),rospy.get_param('~suspend_pose2'),rospy.get_param('~suspend_pose3')]
@@ -130,21 +132,26 @@ class TsukubaChallengeStrategy:
                 vel.angular.z = alpha * angular_diff + beta * vertical_diff
                 vel.linear.x = 0.5
                 pub.publish(vel)
-                while self.sensor_data < 1:
+                while (self.sensor_data < 1.5 and self.sensor_data > 0.01) or (self.vel_sensor_data < 1.5 and self.vel_sensor_data > 0.01):
+                    
                     vel.linear.x = 0
                     vel.angular.z = 0
                     pub.publish(vel)
-                    print("stop")
-                    print('robot_angular:',robot_angular,' line_angular:',line_angular,' angular_diff',angular_diff)
+                    print('scan',self.sensor_data)
+                    print('vel_scan',self.vel_sensor_data)
+
+                    #print("stop")
+                    #print('robot_angular:',robot_angular,' line_angular:',line_angular,' angular_diff',angular_diff)
 
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
 
     def scan_callback(self,msg):
         self.sensor_data = msg.ranges[len(msg.ranges)/2]
-        #print('senfor_data:',self.sensor_data)
         
-
+    def vel_scan_callback(self,msg):
+        self.vel_sensor_data = msg.ranges[len(msg.ranges)/2]
+ 
 
     def spin(self):
         rate = rospy.Rate(10)
