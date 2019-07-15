@@ -92,6 +92,9 @@ class TsukubaChallengeStrategy:
 
 
     def pub_vel(self):
+        #suspend_point:move_baseを停止する位置
+        #rviz上のresume_wp_nav:はmove_baseが停止している時に有効,resume_pointに一番近いway_pointをmove_baseに渡しmove_baseを再開する
+        #関数内で使っているラインはsuspend_pointとresume_pointを結んだ線
         rate = rospy.Rate(10)
         
         pub = rospy.Publisher('/icart_mini/cmd_vel', Twist, queue_size=10)
