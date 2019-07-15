@@ -23,7 +23,7 @@ resume_pose1:
 suspend_pose2:
     position:
       x: 32.2872619629
-      y: 7.0
+      y: 7.3
       z: 0.0
     orientation:
       x: 0.0
