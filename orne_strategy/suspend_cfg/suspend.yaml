@@ -1,215 +1,41 @@
-#3_kai
-
+size: 2
 suspend_pose1:
     position:
-      x: 6.616394043
-      y: -0.633200073
-      z: 0.0
+     x: -0.0510142
+     y: -0.0734857
+     z: -3.34469e-05
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
+     x: 1.67784e-05
+     y: -1.01445e-05
+     z: -0.998926
+     w: 0.0463955
 resume_pose1:
     position:
-      x: 16.616394043
-      y: -1.533200073
-      z: 0.0
+     x: -4.19808
+     y: 0.150332
+     z: -6.277e-05
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      w: 1.0
-
-
+     x: -6.63928e-06
+     y: -9.04075e-06
+     z: -0.999258
+     w: 0.0386768
 suspend_pose2:
     position:
-      x: 22.616394043
-      y: -1.733200073
-      z: 0.0
+     x: -2.47171
+     y: -4.13974
+     z: -0.000100965
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.118375524807
-      w: 0.992968899375
+     x: -3.11033e-06
+     y: 1.53637e-05
+     z: -0.046656
+     w: -0.998913
 resume_pose2:
     position:
-      x: 31.616394043
-      y: -2.233200073
-      z: 0.0
+     x: 0.434204
+     y: -4.39576
+     z: -7.01888e-05
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.118375524807
-      w: 0.992968899375
-
-suspend_pose3:
-    position:
-      x: 32.2872619629
-      y: 7.3
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 1.0
-      w: 0.0
-resume_pose3:
-    position:
-      x: 25.2872619629
-      y: 7.74430542
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 1.0
-      w: 0.0
-
-suspend_pose4:
-    position:
-      x: 8.872619629
-      y: 8.8
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 1.0
-      w: 0.0
-resume_pose4:
-    position:
-      x: 3.4872619629
-      y: 9.34430542
-      z: 0.0
-    orientation:
-      x: 0.0
-      y: 0.0
-      z: 1.0
-      w: 0.0
-
-
-#2号館三階
-# suspend_pose1:
-#     position:
-#         x: -3.9
-#         y: -4.0
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose1:
-#     position:
-#         x: -3.9
-#         y: -4.0
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose2:
-#     position:
-#         x: -5.3
-#         y: 5.16
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose2:
-#     position:
-#         x: -5.3
-#         y: 5.16
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose3:
-#     position:
-#         x: -6.07633
-#         y: 8.64854
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose3:
-#     position:
-#         x: -6.07633
-#         y: 8.64854
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-
-###### GAZEBO MYMAP WP NAGA_MYMAP_GAZEBO
-# suspend_pose1:
-#     position:
-#         x: -1.58424
-#         y: -0.0164871
-#         z: 0.00685692
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose1:
-#     position:
-#         x: -1.58424
-#         y: -0.0164871
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose2:
-#     position:
-#         x: -5.15642
-#         y: 0.275381
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose2:
-#     position:
-#         x: -5.15642
-#         y: 0.275381
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose3:
-#     position:
-#         x: -7.2064
-#         y: -0.18752
-#         z: 0.00139809
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose3:
-#     position:
-#         x: -7.2064
-#         y: -0.18752
-#         z: 0.00139809
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
+     x: 5.14197e-06
+     y: 1.02787e-06
+     z: -0.0141443
+     w: 0.9999

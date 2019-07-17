@@ -12,7 +12,8 @@ from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
-SUSPEND_NUMBER_MAX = 4 #suspend_pointの数
+SUSPEND_NUMBER_MAX = 2 #suspend_pointの数
+line_track_sp = [1,2] 
 
 class TsukubaChallengeStrategy:
     def __init__(self):
@@ -215,8 +216,9 @@ class TsukubaChallengeStrategy:
                         print "suspend_wp_nav() = " + str(suspend_wp_nav(self.suspend_pose[self.current_sp]))
 
 
-                        self.pub_vel()
-
+                        for i in range(len(line_track_sp)):
+                            if (line_track_sp[i]-1) == self.current_sp: 
+                                self.pub_vel()
                         self.current_sp += 1
 
 
