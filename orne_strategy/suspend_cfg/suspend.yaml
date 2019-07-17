@@ -1,4 +1,4 @@
-size: 2
+size: 3
 suspend_pose1:
     position:
      x: -0.0510142
@@ -21,6 +21,26 @@ resume_pose1:
      w: 0.0386768
 suspend_pose2:
     position:
+     x: -5.76333
+     y: -0.852802
+     z: -0.000273682
+    orientation:
+     x: 5.80329e-06
+     y: -2.55967e-05
+     z: -0.556929
+     w: 0.830562
+resume_pose2:
+    position:
+     x: -4.58633
+     y: -3.44786
+     z: -0.000213355
+    orientation:
+     x: -9.42553e-06
+     y: -4.30024e-06
+     z: 0.348028
+     w: -0.93749
+suspend_pose3:
+    position:
      x: -2.47171
      y: -4.13974
      z: -0.000100965
@@ -29,7 +49,7 @@ suspend_pose2:
      y: 1.53637e-05
      z: -0.046656
      w: -0.998913
-resume_pose2:
+resume_pose3:
     position:
      x: 0.434204
      y: -4.39576
